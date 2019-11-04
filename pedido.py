@@ -3,19 +3,29 @@ import requests
 from secrets import GET_URL, PASSWORD
 
 ENTER_DESC = " $ Enter desc (%) "
+desc = None
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, 'Portuguese_Brazil.1252')
-    
-    desc = int(input(ENTER_DESC))
-    grand_tot = 0
+
+    while desc is None:
+        try:
+            desc = int(input(ENTER_DESC))
+        except ValueError:
+            print("desc not valid.")    
+        grand_tot = 0
 
     while True:
         inp = input("Enter qtde and cod, 0/q to quit, r to reset: ")
         if inp == 'r':
             print()
             print("Resetting.")
-            desc = int(input(ENTER_DESC))
+            desc = None
+            while desc is None:
+                try:
+                    desc = int(input(ENTER_DESC))
+                except ValueError:
+                    print("desc not valid.")    
             print()
             grand_tot = 0
             continue
@@ -30,7 +40,7 @@ if __name__ == "__main__":
             # assume only codigo was entered
             print("Assuming 1 pc.")
             qtde = 1
-            cod = int(inp)
+            cod = inp
 
         else:
             qtde, cod = inp.split()
@@ -48,7 +58,7 @@ if __name__ == "__main__":
             grand_tot += subtot
 
             print()
-            print(" >>>>>> (-%{}) item {:.04f} subtot {}, grand tot {}".format(desc, item, locale.currency(subtot, grouping=True), locale.currency(grand_tot, grouping=True)))
+            print(" >>>>>> item -%{}: {:.04f} subtot {}, grand tot {}".format(desc, item, locale.currency(subtot, grouping=True), locale.currency(grand_tot, grouping=True)))
             print()
             
 
