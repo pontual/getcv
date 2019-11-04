@@ -33,7 +33,7 @@ if __name__ == "__main__":
             item = round((1 - desc / 100) * p * 0.03, 4)
             subtot = round(item * qtde, 4)
             print()
-            print(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> item {} tot {}".format(item, locale.currency(subtot, grouping=True)))
+            print(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> item {:,} subtot {}".format(item, locale.currency(subtot, grouping=True)))
             print()
             
             grand_tot += subtot
