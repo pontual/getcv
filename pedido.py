@@ -27,11 +27,14 @@ if __name__ == "__main__":
             break
 
         if len(inp.split()) != 2:
-            print("invalid input. try again")
-            continue
-        
-        qtde, cod = inp.split()
-        qtde = int(qtde)
+            # assume only codigo was entered
+            print("Assuming 1 pc.")
+            qtde = 1
+            cod = int(inp)
+
+        else:
+            qtde, cod = inp.split()
+            qtde = int(qtde)
         
         response = requests.get(GET_URL + f"?c={cod}&s={PASSWORD}")
         cv = response.json()['cv']
