@@ -21,6 +21,8 @@ if __name__ == "__main__":
         inp = input("Qtde, cod, 0/q to quit, r to reset ({} items so far, -{}%): ".format(ct, desc))
         if inp == 'r':
             print()
+            print(">>> {} items. Grand tot {}".format(ct, locale.currency(round(grand_tot, 4), grouping=True)))
+            print()
             print("Resetting.")
             desc = None
             while desc is None:
