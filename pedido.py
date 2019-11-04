@@ -32,7 +32,12 @@ if __name__ == "__main__":
             p = int(p)
             item = round((1 - desc / 100) * p * 0.03, 4)
             subtot = round(item * qtde, 4)
-            print("item {} tot {}".format(item, locale.currency(subtot, grouping=True)))
+            print()
+            print(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> item {} tot {}".format(item, locale.currency(subtot, grouping=True)))
+            print()
+            
             grand_tot += subtot
 
-    print("Grand tot {}".format(locale.currency(round(grand_tot, 4), grouping=True)))
+    print()
+    print(">>> Grand tot {}".format(locale.currency(round(grand_tot, 4), grouping=True)))
+    print()
