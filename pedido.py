@@ -64,7 +64,8 @@ if __name__ == "__main__":
             grand_tot += subtot
 
             print()
-            print(" >>>>>> subtot {}, grand tot {} item {:.04f} (-%{}) ".format(
+            print("> it {:.04f} (-%{}) s.tot {}, g.tot {} it {:.04f} (-%{}) ".format(
+                item, desc,
                 locale.currency(subtot, grouping=True),
                 locale.currency(grand_tot, grouping=True),
                 item, desc))
