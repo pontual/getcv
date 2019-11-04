@@ -2,14 +2,24 @@ import locale
 import requests
 from secrets import GET_URL, PASSWORD
 
+ENTER_DESC = " $ Enter desc (%) "
+
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, 'Portuguese_Brazil.1252')
     
-    desc = int(input("Enter desc "))
+    desc = int(input(ENTER_DESC))
     grand_tot = 0
 
     while True:
-        inp = input("Enter a qtde and codigo, 0 or q to stop ")
+        inp = input("Enter qtde and cod, 0/q to quit, r to reset: ")
+        if inp == 'r':
+            print()
+            print("Resetting.")
+            desc = int(input(ENTER_DESC))
+            print()
+            grand_tot = 0
+            continue
+        
         if inp == '':
             continue
 
@@ -32,11 +42,12 @@ if __name__ == "__main__":
             p = int(p)
             item = round((1 - desc / 100) * p * 0.03, 4)
             subtot = round(item * qtde, 4)
+            grand_tot += subtot
+
             print()
-            print(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> item {:,} subtot {}".format(item, locale.currency(subtot, grouping=True)))
+            print(" >>>>>> (-%{}) item {:.04f} subtot {}, grand tot {}".format(desc, item, locale.currency(subtot, grouping=True), locale.currency(grand_tot, grouping=True)))
             print()
             
-            grand_tot += subtot
 
     print()
     print(">>> Grand tot {}".format(locale.currency(round(grand_tot, 4), grouping=True)))
