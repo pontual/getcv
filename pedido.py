@@ -4,6 +4,7 @@ from secrets import GET_URL, PASSWORD
 
 ENTER_DESC = " $ Enter desc (%) "
 desc = None
+ct = 0
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, 'Portuguese_Brazil.1252')
@@ -12,11 +13,12 @@ if __name__ == "__main__":
         try:
             desc = int(input(ENTER_DESC))
         except ValueError:
-            print("desc not valid.")    
+            print("desc not valid.")
+        ct = 0
         grand_tot = 0
 
     while True:
-        inp = input("Enter qtde and cod, 0/q to quit, r to reset: ")
+        inp = input("Qtde, cod, 0/q to quit, r to reset ({} items so far): ".format(ct))
         if inp == 'r':
             print()
             print("Resetting.")
@@ -27,6 +29,7 @@ if __name__ == "__main__":
                 except ValueError:
                     print("desc not valid.")    
             print()
+            ct = 0
             grand_tot = 0
             continue
         
@@ -55,6 +58,7 @@ if __name__ == "__main__":
             p = int(p)
             item = round((1 - desc / 100) * p * 0.03, 4)
             subtot = round(item * qtde, 4)
+            ct += 1
             grand_tot += subtot
 
             print()
@@ -63,5 +67,5 @@ if __name__ == "__main__":
             
 
     print()
-    print(">>> Grand tot {}".format(locale.currency(round(grand_tot, 4), grouping=True)))
+    print(">>> {} items. Grand tot {}".format(ct, locale.currency(round(grand_tot, 4), grouping=True)))
     print()
