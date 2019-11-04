@@ -2,7 +2,7 @@ import locale
 import requests
 from secrets import GET_URL, PASSWORD
 
-ENTER_DESC = " $ Enter desc (%) "
+ENTER_DESC = "$ Enter desc (%) "
 desc = None
 ct = 0
 
@@ -62,7 +62,10 @@ if __name__ == "__main__":
             grand_tot += subtot
 
             print()
-            print(" >>>>>> item -%{}: {:.04f} subtot {}, grand tot {} (-{}%)".format(desc, item, locale.currency(subtot, grouping=True), locale.currency(grand_tot, grouping=True), desc))
+            print(" >>>>>> subtot {}, grand tot {} item {:.04f} (-%{}) ".format(
+                locale.currency(subtot, grouping=True),
+                locale.currency(grand_tot, grouping=True),
+                item, desc))
             print()
             
 
