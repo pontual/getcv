@@ -1,7 +1,10 @@
+import locale
 import requests
 from secrets import GET_URL, PASSWORD
 
 if __name__ == "__main__":
+    locale.setlocale(locale.LC_ALL, 'Portuguese_Brazil.1252')
+    
     desc = int(input("Enter desc "))
     grand_tot = 0
 
@@ -29,7 +32,7 @@ if __name__ == "__main__":
             p = int(p)
             item = round((1 - desc / 100) * p * 0.03, 4)
             subtot = round(item * qtde, 4)
-            print("item", item, "tot", subtot)
+            print("item {} tot {}".format(item, locale.currency(subtot, grouping=True)))
             grand_tot += subtot
 
-    print("Grand tot", round(grand_tot, 4))
+    print("Grand tot {}".format(locale.currency(round(grand_tot, 4), grouping=True)))
