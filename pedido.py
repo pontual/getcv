@@ -18,7 +18,7 @@ if __name__ == "__main__":
         grand_tot = 0
 
     while True:
-        inp = input("Qtde, cod, 0/q to quit, r to reset ({} items so far): ".format(ct))
+        inp = input("Qtde, cod, 0/q to quit, r to reset ({} items so far, -{}%): ".format(ct, desc))
         if inp == 'r':
             print()
             print("Resetting.")
