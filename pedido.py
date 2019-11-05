@@ -11,34 +11,46 @@ if __name__ == "__main__":
 
     while desc is None:
         try:
-            desc = int(input(ENTER_DESC))
+            desc = input(ENTER_DESC)
+            if desc == "q":
+                print("Quitting.")
+                exit(0)
+            desc = int(desc)
         except ValueError:
             print("desc not valid.")
+            desc = None
         ct = 0
         grand_tot = 0
+        summary = ""
 
     while True:
-        inp = input("Qtde, cod, 0/q to quit, r to reset ({} items so far, -{}%): ".format(ct, desc))
-        if inp == 'r':
+        inp = input("Qtd cod or q, 0/r ({} items, -{}%): ".format(ct, desc))
+        if inp == 'r' or inp == '0':
             print()
+            print(summary)
             print(">>> {} items. Grand tot {}".format(ct, locale.currency(round(grand_tot, 4), grouping=True)))
             print()
             print("Resetting.")
             desc = None
             while desc is None:
                 try:
-                    desc = int(input(ENTER_DESC))
+                    desc = input(ENTER_DESC)
+                    if desc == "q":
+                        print("Quitting.")
+                        exit(0)
+                    desc = int(desc)
                 except ValueError:
-                    print("desc not valid.")    
-            print()
+                    print("desc not valid.")
+                    desc = None
             ct = 0
             grand_tot = 0
+            summary = ""
             continue
         
         if inp == '':
             continue
 
-        if inp == '0' or inp == 'q':
+        if inp == 'q':
             break
 
         if len(inp.split()) != 2:
@@ -62,16 +74,23 @@ if __name__ == "__main__":
             subtot = round(item * qtde, 4)
             ct += 1
             grand_tot += subtot
-
-            print()
-            print("> it {:.04f} (-%{}) s.tot {}, g.tot {} it {:.04f} (-%{}) ".format(
+            summary_line = "{} {:.04f} (-%{})".format(
+                cod.ljust(9),
+                item, desc)
+            item_line = "> it {:.04f} (-%{}) s.tot {}, g.tot {} it {:.04f} (-%{}) ".format(
                 item, desc,
                 locale.currency(subtot, grouping=True),
                 locale.currency(grand_tot, grouping=True),
-                item, desc))
+                item, desc)
+            summary += summary_line + "\n"
+            
+            print()
+            print(item_line)
             print()
             
 
+    print()
+    print(summary)
     print()
     print(">>> {} items. Grand tot {}".format(ct, locale.currency(round(grand_tot, 4), grouping=True)))
     print()
