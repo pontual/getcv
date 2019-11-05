@@ -65,8 +65,8 @@ if __name__ == "__main__":
         
         response = requests.get(GET_URL + f"?c={cod}&s={PASSWORD}")
         cv = response.json()['cv']
-        if cv is None:
-            print("Cod", cod, "not found")
+        if cv is None or "--" in cv:
+            print("Cod", cod, "not found or out of stock")
         else:
             p, q = cv.split(" / ")
             p = int(p)
