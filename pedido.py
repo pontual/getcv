@@ -5,6 +5,13 @@ from secrets import GET_URL, PASSWORD
 ENTER_DESC = "$ Enter desc (%) "
 desc = None
 ct = 0
+labels = {8: 'SPEC. EIGHT',
+          9: 'EXTRA NINE',
+          10: 'EXTRA TEN',
+          11: 'EXTRA ELEVEN',
+          7: 'SPEC. SEVEN',
+          6: 'STANDARD',
+          0: 'ZERO'}
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, 'Portuguese_Brazil.1252')
@@ -24,7 +31,7 @@ if __name__ == "__main__":
         summary = ""
 
     while True:
-        inp = input("Qtd cod or q, 0/r ({} items, -{}%): ".format(ct, desc))
+        inp = input("Qtd cod or q, 0/r ({} items, -{}%) {}: ".format(ct, desc, labels[desc]))
         if inp == 'r' or inp == '0':
             print()
             print(summary)
