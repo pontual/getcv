@@ -11,6 +11,12 @@ labels = {8: 'SPEC. EIGHT',
           11: 'EXTRA ELEVEN',
           7: 'SPEC. SEVEN',
           6: 'STANDARD',
+          15: "FIFTEEN",
+          20: "TWENTY",
+          25: "TWENTY-FIVE",
+          30: "THIRTY",
+          40: "FORTY",
+          50: "FIFTY",
           0: 'ZERO'}
 
 if __name__ == "__main__":
